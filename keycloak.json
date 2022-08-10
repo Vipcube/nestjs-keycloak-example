@@ -1,0 +1,9 @@
+{
+  "realm": "fondus",
+  "auth-server-url": "http://localhost:9003/auth",
+  "resource": "nestjs-app",
+  "credentials": {
+    "secret": "qu6wVHVGTxMQHSzigPWZIAYA9O9dOK0e"
+  },
+  "public-client": false
+}
