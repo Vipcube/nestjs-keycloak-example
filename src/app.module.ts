@@ -5,19 +5,30 @@ import { AppService } from './app.service';
 import {
   AuthGuard,
   KeycloakConnectModule,
+  PolicyEnforcementMode,
   ResourceGuard,
   RoleGuard,
+  TokenValidation,
 } from 'nest-keycloak-connect';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    KeycloakConnectModule.register({
-      authServerUrl: 'http://localhost:9003/auth',
-      realm: 'fondus',
-      clientId: 'nestjs-app',
-      secret: 'qu6wVHVGTxMQHSzigPWZIAYA9O9dOK0e',
-      public: false,
+    // KeycloakConnectModule.register({
+    //   authServerUrl: 'http://localhost:9003/auth',
+    //   realm: 'fondus',
+    //   clientId: 'nestjs-app',
+    //   secret: 'qu6wVHVGTxMQHSzigPWZIAYA9O9dOK0e',
+    //   public: false,
+    //   policyEnforcement: PolicyEnforcementMode.PERMISSIVE,
+    //   tokenValidation: TokenValidation.ONLINE,
+    // }),
+    // Use Keycloak.json
+    KeycloakConnectModule.register('./keycloak.json', {
+      policyEnforcement: PolicyEnforcementMode.PERMISSIVE,
+      tokenValidation: TokenValidation.ONLINE,
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [
