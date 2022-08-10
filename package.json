@@ -1,8 +1,8 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "nestks-keycloak-example",
   "private": true,
   "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "description": "Example Secure NestJS REST API with Keycloak",
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -23,6 +23,7 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "nest-keycloak-connect": "^1.9.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.5"
