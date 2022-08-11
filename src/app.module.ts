@@ -16,9 +16,9 @@ import { UserModule } from './user/user.module';
   imports: [
     // KeycloakConnectModule.register({
     //   authServerUrl: 'http://localhost:9003/auth',
-    //   realm: 'fondus',
+    //   realm: 'nodejs-example',
     //   clientId: 'nestjs-app',
-    //   secret: 'qu6wVHVGTxMQHSzigPWZIAYA9O9dOK0e',
+    //   secret: 'SYSfyOCnzV9VRiIxsfAPqWIkVWtmuB8C',
     //   public: false,
     //   policyEnforcement: PolicyEnforcementMode.PERMISSIVE,
     //   tokenValidation: TokenValidation.ONLINE,
