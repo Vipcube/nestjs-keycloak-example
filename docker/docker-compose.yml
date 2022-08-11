@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:16.1.0
+    hostname: keycloak
+    ports:
+      - "9003:8080"
+    environment:
+      KEYCLOAK_USER: ${KEYCLOAK_ROOT_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_ROOT_PASSWORD}
+      KEYCLOAK_IMPORT: "/temp/example-realm.json -Dkeycloak.profile.feature.upload_scripts=enabled"
+      DB_VENDOR: mariadb # Use Database type
+      DB_ADDR: keycloak-db # Database URL
+      DB_DATABASE: ${DATABASE_NAME}
+      DB_USER: ${DATABASE_USER}
+      DB_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - ./example-realm.json:/temp/example-realm.json
+    depends_on:
+      - keycloak-db
+    networks:
+      - auth
+
+  keycloak-db:
+    image: mariadb:10.6.7
+    hostname: keycloak-db
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DATABASE_NAME}
+      MARIADB_USER: ${DATABASE_USER}
+      MARIADB_PASSWORD: ${DATABASE_PASSWORD}
+    networks:
+      - auth
+
+networks:
+  auth:
+    name: auth
+    driver: bridge
