@@ -15,4 +15,12 @@ describe('UserService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should not empty', () => {
+    expect(service.getUsers()).resolves.not.toEqual([]);
+  });
+
+  it('should not empty filter by name', () => {
+    expect(service.getUsersByName('bard')).resolves.not.toEqual([]);
+  });
 });
