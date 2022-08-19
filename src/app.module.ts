@@ -11,6 +11,7 @@ import {
   TokenValidation,
 } from 'nest-keycloak-connect';
 import { UserModule } from './user/user.module';
+import { TokenScopesGuard } from './guards/token-scopes.guard';
 
 @Module({
   imports: [
@@ -54,6 +55,12 @@ import { UserModule } from './user/user.module';
     {
       provide: APP_GUARD,
       useClass: RoleGuard,
+    },
+    // This adds a global level token scopes guard, which is permissive.
+    // Only controllers or methods annotated with @TokenScopes are handled by this guard.
+    {
+      provide: APP_GUARD,
+      useClass: TokenScopesGuard,
     },
   ],
 })

@@ -2,6 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user';
 import { Resource, Scopes, Unprotected } from 'nest-keycloak-connect';
+import { TokenScopes } from '../decorators/token-scopes.decorator';
 
 // 1. This annotation need enable Authorization Enabled.
 // 2. Create resource with annotation Key at Authorization Tabs → Resources Tabs.
@@ -21,6 +22,12 @@ export class UserController {
   @Get('/scope')
   @Scopes('basic')
   async getUsersScope(): Promise<User[]> {
+    return this.service.getUsers();
+  }
+
+  @Get('/token-scope')
+  @TokenScopes('basic')
+  async getUsersTokenScope(): Promise<User[]> {
     return this.service.getUsers();
   }
 
